@@ -1,0 +1,9 @@
+Location wise:
+SELECT d.vaccination_location, m.date_manufactured, COUNT(DISTINCT d.fullname) as vaccines_distributed_count, SUM(DISTINCT(m.Count_distributed)) as vaccines_procured_count FROM `doses_administered` d JOIN `manufacturers` m on m.distributed_to = d.vaccination_location AND m.date_manufactured = d.date GROUP BY m.distributed_to, m.date_manufactured order by d.date
+
+
+State wise:
+SELECT d.vaccination_location, m.date_manufactured, COUNT(DISTINCT d.fullname) as vaccines_distributed_count, SUM(DISTINCT(m.Count_distributed)) as vaccines_procured_count FROM `doses_administered` d JOIN `manufacturers` m on m.distributed_to = d.vaccination_location AND m.date_manufactured = d.date WHERE `vaccination_location` LIKE 'TX%' GROUP BY m.distributed_to, m.date_manufactured order by d.date
+
+county wise:
+SELECT d.vaccination_location, m.date_manufactured, COUNT(DISTINCT d.fullname) as vaccines_distributed_count, SUM(DISTINCT(m.Count_distributed)) as vaccines_procured_count FROM `doses_administered` d JOIN `manufacturers` m on m.distributed_to = d.vaccination_location AND m.date_manufactured = d.date WHERE `vaccination_location` LIKE 'TX001%' GROUP BY m.distributed_to, m.date_manufactured order by d.date

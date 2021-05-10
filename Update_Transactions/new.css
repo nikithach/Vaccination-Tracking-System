@@ -1,0 +1,386 @@
+/*** Last name: Vaduguru
+First name: Bharadwaj
+Student id:1001761106
+
+
+
+colour used for top navigation bar in header is: #cfcdcd
+colour used for middle navigation bar in header is: #CFCCC8
+colour used for footer is:#292828
+
+Font-colur is different in different HTML pages, they are mentioned at respective places.
+References:       https://www.w3schools.com/css/
+                  https://ckeditor.com/ckeditor-4/
+
+
+****/
+
+* {
+    padding: 0;
+    margin: 0;
+
+}
+
+body {
+    height: 100%;
+}
+
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.topNav {
+    padding: 15px 0px 10px 0px;
+    text-align: center;
+    height: 40px;
+    background: #cfcdcd;
+      text-decoration: none;
+}
+
+.btn {
+    padding: 10px 24px;
+    cursor: pointer;
+      text-decoration: none;
+          border: 1px solid #212121;
+
+}
+
+.btn-outline {
+    border: 1px solid #212121;
+    background: #fff;
+      text-decoration: none;
+    border-radius: 5px;
+}
+
+
+
+
+.btn-outline a{
+    background: #fff;
+    color:#000 ;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+
+
+
+
+.btn-primary {
+    background: #292828;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+.btn-primary a{
+    background: #292828;
+    color: #ffffff;
+    text-decoration: none;
+}
+
+
+
+
+.btn-enrolled {
+    padding: 4px 20px;
+    border: 1px solid #212121;
+}
+
+.btn-enrolled a{
+    padding: 4px 20px;
+    border: 1px solid #212121;
+    text-decoration:none;
+}
+
+
+
+nav {
+    background: #838282;
+}
+
+nav ul {
+    padding-right: 40px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    list-style: none;
+}
+
+nav ul li {
+    list-style: none;
+    padding: 1.25rem 0.75rem;
+    align-items: center;
+}
+
+li a {
+    text-decoration: none;
+    color: #212121;
+}
+
+.content {
+    flex-grow: 1;
+    /* background: #f7b2b2; */
+    padding: 1.5rem 5.5rem;
+    text-align: center;
+}
+
+.content-heading {
+    font-size: 24px;
+    padding-top: 4px;
+}
+
+.content-flex-container {
+    display: flex;
+    min-height: 200px;
+    font-size: 15px;
+        max-width: 80%;
+}
+
+.content-flex-columns {
+    flex: 0.5;
+}
+
+.content-flex-columns img{
+    width: 500px;
+    height: 30opx;
+}
+
+.content-flex-columns:nth-of-type(even) {
+    flex: 2;
+}
+
+.content-flex-columns:nth-of-type(odd) {
+    /* background: #85929E; */
+    color: white;
+    text-align: center;
+    border-right: 1px solid #818181;
+}
+
+.content-flex-columns:nth-of-type(even) {
+    padding-left: 1.5rem;
+}
+
+.side-tab {
+    background: #dddddd;
+    color: #212121;
+    text-align: end;
+    padding: 10px 20px;
+    border-right: 2px solid #818181;
+}
+
+.cards {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-gap: 2rem;
+}
+
+.card {
+    background-color: #838282;
+    color: white;
+    height: 8rem;
+    text-align: center;
+    cursor: pointer;
+}
+
+.card-image {
+    height: 6rem;
+}
+
+.card-text {
+    padding: 0.5rem 1.5rem;
+    background: #fff;
+    color: #212121;
+}
+
+footer {
+    background: #292828;
+    color: #fff;
+    bottom: 0;
+    padding: 1.25rem 2.5rem;
+}
+
+.lb2 {
+    float: right;
+}
+
+.txt-left{
+    text-align: left;
+}
+.txt-center{
+    text-align: center;
+}
+.txt-right{
+    text-align: right;
+}
+
+.inputTxt{
+    padding: 6px 20px 6px 2px;
+    border-radius: 4px;
+}
+
+.pull-right{
+    float:right;
+}
+.pull-left{
+    float:left;
+}
+.margin-right{
+    margin-right: 5%;
+}
+
+.logo{
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    margin-right:20px;
+}
+
+
+@media (max-width: 800px) {
+    nav ul {
+        justify-content: center;
+    }
+    .content-flex-container {
+        flex-direction: column;
+    }
+    .content-flex-columns:nth-of-type(even) {
+        padding-top: 1.5rem;
+        padding-left: 0;
+    }
+    .side-tab {
+        text-align: center;
+        border-right: none;
+    }
+    .content-flex-columns img{
+        width: 350px;
+        height: 150px;
+    }
+}
+
+@media (min-width: 600px) {
+    .cards {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (min-width: 900px) {
+    .cards {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+body {
+    font-family: "Open Sans", sans-serif;
+    line-height: 1.25;
+  }
+  
+  table {
+    border: 1px solid #ccc;
+    border-collapse: collapse;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    table-layout: fixed;
+  }
+  
+  table caption {
+    font-size: 1.5em;
+    margin: .5em 0 .75em;
+  }
+  
+  table tr {
+    background-color: #f8f8f8;
+    border: 1px solid #ddd;
+    padding: .35em;
+  }
+  
+  table th,
+  table td {
+    padding: .625em;
+    text-align: center;
+    word-wrap: break-word;
+  }
+  
+  table th {
+    font-size: .85em;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+  }
+  
+  @media screen and (max-width: 600px) {
+    table {
+      border: 0;
+    }
+  
+    table caption {
+      font-size: 1.3em;
+    }
+    
+    table thead {
+      border: none;
+      clip: rect(0 0 0 0);
+      height: 1px;
+      margin: -1px;
+      overflow: hidden;
+      padding: 0;
+      position: absolute;
+      width: 1px;
+    }
+    
+    table tr {
+      border-bottom: 3px solid #ddd;
+      display: block;
+      margin-bottom: .625em;
+    }
+    
+    table td {
+      border-bottom: 1px solid #ddd;
+      display: block;
+      font-size: .8em;
+      text-align: right;
+    }
+    
+    table td::before {
+      content: attr(data-label);
+      float: left;
+      font-weight: bold;
+      text-transform: uppercase;
+    }
+    
+    table td:last-child {
+      border-bottom: 0;
+    }
+  }

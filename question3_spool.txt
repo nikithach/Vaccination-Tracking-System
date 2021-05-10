@@ -1,0 +1,72 @@
+MariaDB [(none)]> use vaccination_tracking_system;
+Database changed
+MariaDB [vaccination_tracking_system]> show tables;
++---------------------------------------+
+| Tables_in_vaccination_tracking_system |
++---------------------------------------+
+| doses_administered                    |
+| doses_datewise                        |
+| federal_data                          |
+| location_details                      |
+| manufacturers                         |
+| tot_doses_distributed                 |
+| unit_distribution                     |
++---------------------------------------+
+7 rows in set (0.001 sec)
+
+MariaDB [vaccination_tracking_system]> SELECT d.vaccination_location, m.date_manufactured, COUNT(DISTINCT d.fullname) as vaccines_distributed_count, SUM(DISTINCT(m.Count_distributed)) as vaccines_procured_count FROM `doses_administered` d JOIN `manufacturers` m on m.distributed_to = d.vaccination_location AND m.date_manufactured = d.date GROUP BY m.distributed_to, m.date_manufactured order by d.date
+    -> 
+    -> ;
++----------------------+-------------------+----------------------------+-------------------------+
+| vaccination_location | date_manufactured | vaccines_distributed_count | vaccines_procured_count |
++----------------------+-------------------+----------------------------+-------------------------+
+| TX001001             | 4/1/2021          |                          3 |                    9457 |
+| AB002001             | 4/14/2021         |                          1 |                    5967 |
+| AB001002             | 4/15/2021         |                          1 |                    5836 |
+| AB002002             | 4/16/2021         |                          1 |                    3995 |
+| AB003001             | 4/17/2021         |                          1 |                    6903 |
+| TX004001             | 4/18/2021         |                          1 |                    8628 |
+| TX004001             | 4/19/2021         |                          1 |                    8496 |
+| TX001002             | 4/2/2021          |                          1 |                    2889 |
+| TX004002             | 4/20/2021         |                          1 |                    7007 |
+| AB002002             | 4/21/2021         |                          1 |                    8073 |
+| TX001003             | 4/3/2021          |                          1 |                    9644 |
+| AB001001             | 4/4/2021          |                          1 |                    1106 |
+| AB001001             | 4/5/2021          |                          1 |                    4888 |
+| TX001002             | 4/7/2021          |                          1 |                    9610 |
+| TX001003             | 4/8/2021          |                          1 |                    8573 |
+| TX001003             | 4/9/2021          |                          1 |                    3928 |
++----------------------+-------------------+----------------------------+-------------------------+
+16 rows in set (0.002 sec)
+
+MariaDB [vaccination_tracking_system]> SELECT d.vaccination_location, m.date_manufactured, COUNT(DISTINCT d.fullname) as vaccines_distributed_count, SUM(DISTINCT(m.Count_distributed)) as vaccines_procured_count FROM `doses_administered` d JOIN `manufacturers` m on m.distributed_to = d.vaccination_location AND m.date_manufactured = d.date WHERE `vaccination_location` LIKE 'TX%' GROUP BY m.distributed_to, m.date_manufactured order by d.date
+    -> ;
++----------------------+-------------------+----------------------------+-------------------------+
+| vaccination_location | date_manufactured | vaccines_distributed_count | vaccines_procured_count |
++----------------------+-------------------+----------------------------+-------------------------+
+| TX001001             | 4/1/2021          |                          3 |                    9457 |
+| TX004001             | 4/18/2021         |                          1 |                    8628 |
+| TX004001             | 4/19/2021         |                          1 |                    8496 |
+| TX001002             | 4/2/2021          |                          1 |                    2889 |
+| TX004002             | 4/20/2021         |                          1 |                    7007 |
+| TX001003             | 4/3/2021          |                          1 |                    9644 |
+| TX001002             | 4/7/2021          |                          1 |                    9610 |
+| TX001003             | 4/8/2021          |                          1 |                    8573 |
+| TX001003             | 4/9/2021          |                          1 |                    3928 |
++----------------------+-------------------+----------------------------+-------------------------+
+9 rows in set (0.002 sec)
+
+MariaDB [vaccination_tracking_system]> SELECT d.vaccination_location, m.date_manufactured, COUNT(DISTINCT d.fullname) as vaccines_distributed_count, SUM(DISTINCT(m.Count_distributed)) as vaccines_procured_count FROM `doses_administered` d JOIN `manufacturers` m on m.distributed_to = d.vaccination_location AND m.date_manufactured = d.date WHERE `vaccination_location` LIKE 'TX001%' GROUP BY m.distributed_to, m.date_manufactured order by d.date;
++----------------------+-------------------+----------------------------+-------------------------+
+| vaccination_location | date_manufactured | vaccines_distributed_count | vaccines_procured_count |
++----------------------+-------------------+----------------------------+-------------------------+
+| TX001001             | 4/1/2021          |                          3 |                    9457 |
+| TX001002             | 4/2/2021          |                          1 |                    2889 |
+| TX001003             | 4/3/2021          |                          1 |                    9644 |
+| TX001002             | 4/7/2021          |                          1 |                    9610 |
+| TX001003             | 4/8/2021          |                          1 |                    8573 |
+| TX001003             | 4/9/2021          |                          1 |                    3928 |
++----------------------+-------------------+----------------------------+-------------------------+
+6 rows in set (0.002 sec)
+
+MariaDB [vaccination_tracking_system]> notee

@@ -1,0 +1,87 @@
+MariaDB [(none)]> create database vaccination_tracking_system;
+Query OK, 1 row affected (0.058 sec)
+
+MariaDB [(none)]> use vaccination_tracking_system;
+Database changed
+MariaDB [vaccination_tracking_system]> create table manufacturers( 
+    -> sno int(11), 
+    -> manufacturer_name Varchar(40), 
+    -> vaccine_name Varchar(40), 
+    -> distributed_to Varchar(40), 
+    -> Count_distributed int(11), 
+    -> primary key(manufacturer_name,vaccine_name,distributed_to)
+    -> );
+Query OK, 0 rows affected (0.309 sec)
+
+MariaDB [vaccination_tracking_system]> CREATE INDEX vaccine_index
+    -> ON manufacturers(vaccine_name);
+Query OK, 0 rows affected (0.195 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+MariaDB [vaccination_tracking_system]> create table federal_data(
+    -> vaccine_name Varchar(40), 
+    -> Shipped_to_location Varchar(40),  
+    -> Count_procured int(11),
+    -> manufacturer_name Varchar(40),
+    -> primary key(vaccine_name,Shipped_to_location),
+    -> FOREIGN KEY (vaccine_name) REFERENCES manufacturers(vaccine_name),
+    -> FOREIGN KEY (manufacturer_name) REFERENCES manufacturers(manufacturer_name)
+    -> );
+Query OK, 0 rows affected (0.277 sec)
+MariaDB [vaccination_tracking_system]> create table tot_doses_distributed(
+    -> vaccine_name Varchar(40), 
+    -> shipped_to_location Varchar(40), 
+    -> Distributed_by Varchar(40), 
+    -> count_of_vaccination_distributed int(11),
+    -> Distributed_date date,
+    -> primary key(vaccine_name,shipped_to_location,Distributed_by),
+    -> FOREIGN KEY (vaccine_name) REFERENCES manufacturers(vaccine_name)
+    -> );
+Query OK, 0 rows affected (0.269 sec)
+
+MariaDB [vaccination_tracking_system]> CREATE INDEX distributed_index_doses
+    -> ON tot_doses_distributed(Distributed_by);
+Query OK, 0 rows affected (0.387 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+MariaDB [vaccination_tracking_system]> create table doses_administered(
+    -> vaccine_name Varchar(40), 
+    -> Distributed_by Varchar(40), 
+    -> fullname Varchar(40),
+    -> address Varchar(40),
+    -> contact Varchar(40), 
+    -> age int(11),
+    -> medical_conditions Varchar(40),
+    -> any_allergy Varchar(40),
+    -> vaccination_phase Varchar(40), 
+    -> vaccination_dose int(11),
+    -> FOREIGN KEY (vaccine_name) REFERENCES manufacturers(vaccine_name),
+    -> FOREIGN KEY (Distributed_by) REFERENCES tot_doses_distributed(Distributed_by)
+    -> );
+Query OK, 0 rows affected (0.324 sec)
+
+MariaDB [vaccination_tracking_system]> create table doses_datewise(
+    -> Date_wise DATE NOT NULL,
+    -> location Varchar(40), 
+    -> vaccine_name Varchar(40), 
+    -> count_vaccine_distributed int(11),
+    -> Distributed_by Varchar(40),
+    -> primary key(Date_wise,location,vaccine_name,Distributed_by),
+    -> FOREIGN KEY (vaccine_name) REFERENCES manufacturers(vaccine_name),
+    -> FOREIGN KEY (Distributed_by) REFERENCES tot_doses_distributed(Distributed_by)
+    -> );
+Query OK, 0 rows affected (0.430 sec)
+
+MariaDB [vaccination_tracking_system]> create table unit_distribution(
+    -> unit_location_name varchar(40),
+    -> state Varchar(40), 
+    -> county Varchar(40), 
+    -> vaccine_name Varchar(40), 
+    -> vaccine_procured_count Varchar(40),
+    -> Distributed_count Varchar(40),
+    -> Date_wise date,
+    -> primary key(unit_location_name,vaccine_name,Date_wise),
+    -> FOREIGN KEY (vaccine_name) REFERENCES manufacturers(vaccine_name)
+    -> );
+Query OK, 0 rows affected (0.457 sec)
+
+MariaDB [vaccination_tracking_system]> notee

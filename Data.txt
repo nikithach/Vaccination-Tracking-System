@@ -1,0 +1,132 @@
+MariaDB [(none)]> show databases;
++-----------------------------+
+| Database                    |
++-----------------------------+
+| covid_vaccination_system    |                        
+| dbproject2                  |
+| information_schema          |
+| mysql                       |
+| new_schema                  |
+| performance_schema          |
+| phpmyadmin                  |
+| skk                         |
+| us_covid_19                 |
+| us_covid_19_2               |
+| vaccination_tracking_system |
++-----------------------------+
+13 rows in set (0.001 sec)
+
+MariaDB [(none)]> use vaccination_tracking_system;
+Database changed
+MariaDB [vaccination_tracking_system]> show tables;
++---------------------------------------+
+| Tables_in_vaccination_tracking_system |
++---------------------------------------+
+| doses_administered                    |
+| doses_datewise                        |
+| federal_data                          |
+| location_details                      |
+| manufacturers                         |
+| tot_doses_distributed                 |
+| unit_distribution                     |
++---------------------------------------+
+7 rows in set (0.001 sec)
+
+MariaDB [vaccination_tracking_system]> select * from manufacturers limit 10;
++----------------------+-----------------+----------------+-------------------+-------------------+
+| manufacturer_name    | vaccine_name    | distributed_to | Count_distributed | date_manufactured |
++----------------------+-----------------+----------------+-------------------+-------------------+
+| AstraZeneca          | mRNA based      | AB003003       |              8201 | 4/12/2021         |
+| AstraZeneca          | mRNA based      | TX001002       |              9610 | 4/7/2021          |
+| BioNTech             | mRNA based      | AB001002       |              6754 | 07/06/2019        |
+| BioNTech             | mRNA based      | TX004002       |              7007 | 4/20/2021         |
+| BioNTech             | protein subunit | TX001001       |              9291 | 4/6/2021          |
+| BioNTech             | protein subunit | TX001004       |               190 | 08/06/2021        |
+| BioNTech             | viral vector    | TX001003       |              8573 | 4/8/2021          |
+| Dynavax Technologies | protein subunit | AB001001       |              4888 | 4/5/2021          |
+| Dynavax Technologies | protein subunit | TX004001       |              8496 | 4/19/2021         |
+| Dynavax Technologies | viral vector    | TX001003       |              3928 | 4/9/2021          |
++----------------------+-----------------+----------------+-------------------+-------------------+
+10 rows in set (0.001 sec)
+
+MariaDB [vaccination_tracking_system]> select * from federal_data limit 10;
++--------------+---------------------+----------------+-------------------------------+--------------+
+| vaccine_name | Shipped_to_location | Count_procured | manufacturer_name             | date_federal |
++--------------+---------------------+----------------+-------------------------------+--------------+
+| mRNA based   | AB001002            |            700 | pfizer                        | 07/05/2019   |
+| mRNA based   | AB001003            |           5567 | BioNTech                      | 07/06/2019   |
+| mRNA based   | AB002001            |           2346 | Emergent Biosolutions         | 4/5/2021     |
+| mRNA based   | AB002002            |           2534 | Emergent Biosolutions         | 4/14/2021    |
+| mRNA based   | AB003002            |           2554 | Janssen (Johnson and Johnson) | 4/15/2021    |
+| mRNA based   | AB003002            |            678 | Emergent Biosolutions         | 4/25/2021    |
+| mRNA based   | AB004003            |           5672 | BioNTech                      | 4/18/2021    |
+| mRNA based   | AB004003            |            255 | Sanofi Pasteur                | 4/21/2021    |
+| mRNA based   | TX001001            |          63655 | AstraZeneca                   | 4/10/2021    |
+| mRNA based   | TX001002            |           1234 | pfizer                        | 01/04/2021   |
++--------------+---------------------+----------------+-------------------------------+--------------+
+10 rows in set (0.001 sec)
+
+MariaDB [vaccination_tracking_system]> select * from doses_administered limit 10;
++-----------------+----------------+-------------+-------------------------+------------+------+--------------------+-------------+-------------------------------------------------+------------------+----------------------+------------+------------------+
+| vaccine_name    | Distributed_by | fullname    | address                 | contact    | age  | medical_conditions | any_allergy | vaccination_phase                               | vaccination_dose | vaccination_location | date       | adverse_reaction |
++-----------------+----------------+-------------+-------------------------+------------+------+--------------------+-------------+-------------------------------------------------+------------------+----------------------+------------+------------------+
+| whole virus     | federal        | Addison     | Apollo Rd               | 9876551555 |   25 | HIV/AIDS           | no          | 1B ? population over 65                         | second           | AB002001             | 4/14/2021  | none             |
+| viral vector    | federal        | Addisyn     | Ben Davis Rd            | 9876551556 |   26 | none               | yes         | 1A ? long tern care ? assisted living residents | second           | AB001002             | 4/15/2021  | body pains       |
+| viral vector    | manufacturer   | Addyson     | Berkner Dr              | 9876551557 |   27 | Psoriasis          | no          | 2 ? people 16 years and older                   | second           | AB002002             | 4/16/2021  | Back pain        |
+| whole virus     | manufacturer   | aeropostale | matlock                 | 7937498987 |   34 | none               | no          | 1A ? Healthcase (Tier2)                         | second           | TX001003             | 4/3/2021   | body pains       |
+| whole virus     | Manufacturer   | ale         |                         | 1234123456 |   21 | none               | none        | 1B ƒ?? population over 65                       | First dose       | TX001001             | 4/1/2021   | none             |
+| whole virus     | Manufacturer   | Ale         | 507 Summit Ave          | 1234569890 |   54 | none               | none        | 1A (Healthcare ƒ?? Tier1)                       | First dose       | TX001001             | 4/1/2021   | body pain        |
+| whole virus     | Manufacturer   | bharadwaj   | 507 Summit Ave, Apt 372 | 1234585576 |   56 | nothing            | no allergy  | 1A (Healthcare ƒ?? Tier1)                       | Second dose      | TX001001             | 03/02/2001 | none             |
+| viral vector    | federal        | christine   | davisdrive              | 7798787977 |   27 | bloodpressure      | no          | 1B ? 16-64 any medical condition                | first            | AB001001             | 4/4/2021   | none             |
+| protein subunit | manufacturer   | christine   | hollywood blvd          | 9187772666 |   22 | diabetic           | no          | 1B ? population over 65                         | first            | TX001002             | 4/7/2021   | Back pain        |
+| whole virus     | federal        | Everly      | Lake Meadow Ln          | 9876551610 |   38 | Anxiety            | no          | 2 ? people 16 years and older                   | first            | TX001002             | 6/8/2021   | Back pain        |
++-----------------+----------------+-------------+-------------------------+------------+------+--------------------+-------------+-------------------------------------------------+------------------+----------------------+------------+------------------+
+10 rows in set (0.001 sec)
+
+MariaDB [vaccination_tracking_system]> select * from doses_datewise limit 10;
++----------+-----------------+-------------------+----------------+------------+
+| location | vaccine_name    | people_vaccinated | Distributed_by | datawise   |
++----------+-----------------+-------------------+----------------+------------+
+| TX004001 | viral vector    |               778 | TX003003       | 03/23/2009 |
+| TX002002 | viral vector    |               300 | AB004002       | 06/06/1995 |
+| TX004001 | viral vector    |               786 | TX002002       | 07/07/2002 |
+| AB002002 | protein subunit |               300 | TX002002       | 07/07/2007 |
+| AB003003 | whole virus     |                89 | AB004003       | 09/19/2014 |
++----------+-----------------+-------------------+----------------+------------+
+5 rows in set (0.001 sec)
+
+MariaDB [vaccination_tracking_system]> select * from location_details limit 10;
++---------+----------+--------------+--------------------+----------+
+| state   | county   | unit         | ADDRESS            | code     |
++---------+----------+--------------+--------------------+----------+
+| ALABAMA | CLEBURNE | CVS PHARMACY | 6765 JERTY RD      | AB001001 |
+| ALABAMA | CLEBURNE | WALGREENS    | 6TH AVENUE RD      | AB001002 |
+| ALABAMA | CLEBURNE | CURATIVE     | 908 MATHUI RD      | AB001003 |
+| ALABAMA | CHEROKEE | CVS PHARMACY | 554 YIERGF RD      | AB002001 |
+| ALABAMA | CHEROKEE | WALGREENS    | 65 HDGSGA RD       | AB002002 |
+| ALABAMA | CHEROKEE | CURATIVE     | 67 GGTREY RD       | AB002003 |
+| ALABAMA | CLAY     | CVS PHARMACY | 676 IROYU RD       | AB003001 |
+| ALABAMA | CLAY     | WALGREENS    | 56 EAST BOULDER RD | AB003002 |
+| ALABAMA | CLAY     | CURATIVE     | 77 UTINY RD        | AB003003 |
+| ALABAMA | DALE     | CVS PHARMACY | 87 YITYU RD        | AB004001 |
++---------+----------+--------------+--------------------+----------+
+10 rows in set (0.001 sec)
+
+MariaDB [vaccination_tracking_system]> select * from unit_distribution limit 10;
++--------------------+-----------------+------------------------+------------+
+| unit_location_name | vaccine_name    | vaccine_procured_count | Date_wise  |
++--------------------+-----------------+------------------------+------------+
+| AB001001           | protein subunit | 6743                   | 07/06/2000 |
+| AB001002           | mRNA based      | 700                    | 07/05/2019 |
+| AB001002           | mRNA based      | 6754                   | 07/06/2019 |
+| AB001002           | whole virus     | 1234                   | 07/06/2019 |
+| AB001003           | mRNA based      | 5567                   | 07/06/2019 |
+| AB001004           | whole virus     | 1234                   | 07/06/2019 |
+| TX001001           | protein subunit | 1000                   | 08/06/2000 |
+| TX001002           | mRNA based      | 1000                   | 07/03/2021 |
+| TX001002           | mRNA based      | 100                    | 08/04/2021 |
+| TX001003           | whole virus     | 190                    | 08/06/2021 |
++--------------------+-----------------+------------------------+------------+
+10 rows in set (0.001 sec)
+
+MariaDB [vaccination_tracking_system]> notee
